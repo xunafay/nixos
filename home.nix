@@ -29,7 +29,11 @@ in {
     };
   };
 
-  programs.discord.enable = true; 
+  programs = {
+    discord.enable = true; 
+    vscode.enable = true;
+    swappy.enable = true;
+  };
 
   home = {
     packages = with pkgs; [
@@ -41,6 +45,9 @@ in {
       fastfetch
       discord
       discordo
+      vscode
+      grim
+      swappy
 
       # quickshell deps
       quickshell

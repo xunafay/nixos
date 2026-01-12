@@ -6,9 +6,12 @@ let
 in {
   programs.niri.settings.binds = with config.lib.niri.actions; let
     pactl = "${pkgs.pulseaudio}/bin/pactl";
+    grim = "${pkgs.grim}/bin/grim";
+    swappy = "${pkgs.swappy}/bin/swappy";
 
     volume-up = spawn pactl [ "set-sink-volume" "@DEFAULT_SINK@" "+5%" ];
     volume-down = spawn pactl [ "set-sink-volume" "@DEFAULT_SINK@" "-5%" ];
+    screenshot = spawn "sh" [ "-c" "${grim} - | ${swappy} -f -" ];
   in {
 
     # Quickshell Keybinds Start
@@ -32,7 +35,7 @@ in {
     "super+f".action = fullscreen-window;
     "super+t".action = toggle-window-floating;
 
-    #"control+shift+1".action = screenshot;
+    "super+shift+s".action = screenshot;
     #"control+shift+2".action = screenshot-window { write-to-disk = true; };
 
 
