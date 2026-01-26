@@ -81,6 +81,7 @@ Scope {
     IPCHandlers {
         appLauncherPanel: appLauncherPanel
         lockScreen: lockScreen
+        sidebarPopup: bar.firstSidebarPopup
     }
 
     Connections {

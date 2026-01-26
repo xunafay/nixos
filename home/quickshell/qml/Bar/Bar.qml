@@ -18,6 +18,7 @@ import qs.Widgets.Notification
 Scope {
     id: rootScope
     property var shell
+    property var firstSidebarPopup: null
 
     Item {
         id: barRootItem
@@ -87,6 +88,11 @@ Scope {
                             anchors.verticalCenter: parent.verticalCenter
                         }
 
+                        WifiPanel {
+                            id: wifiPanel
+                            anchors.verticalCenter: parent.verticalCenter
+                        }
+
                         Brightness {
                             id: widgetsBrightness
                             anchors.verticalCenter: parent.verticalCenter
@@ -117,6 +123,11 @@ Scope {
 
                         PanelPopup {
                             id: sidebarPopup
+                            Component.onCompleted: {
+                                if (!rootScope.firstSidebarPopup) {
+                                    rootScope.firstSidebarPopup = sidebarPopup
+                                }
+                            }
                         }
 
                         Button {

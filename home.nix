@@ -62,9 +62,6 @@ in {
       xwayland-satellite
       wl-clipboard
       swaylock
-
-      #uh
-      networkmanagerapplet
     ];
 
 

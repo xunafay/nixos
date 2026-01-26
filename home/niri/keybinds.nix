@@ -17,7 +17,7 @@ in {
     # Quickshell Keybinds Start
     "super+Return".action = spawn ["qs" "ipc" "call" "globalIPC" "toggleLauncher"];
     "super+Space".action = spawn ["qs" "ipc" "call" "globalIPC" "toggleStatusMenu"];
-    "super+l".action = spawn ["swaylock"];
+    "super+l".action = spawn ["qs" "ipc" "call" "globalIPC" "toggleLock"];
     # Quickshell Keybinds End
 
     "xf86audioraisevolume".action = volume-up;
@@ -48,6 +48,15 @@ in {
     "super+Shift+Right".action = move-column-right;
     "super+Shift+Down".action = move-column-to-workspace-down;
     "super+Shift+Up".action = move-column-to-workspace-up;
+
+    # Window resizing
+    "super+Control+Left".action = set-column-width "-10%";
+    "super+Control+Right".action = set-column-width "+10%";
+    "super+Control+Down".action = set-window-height "-10%";
+    "super+Control+Up".action = set-window-height "+10%";
+
+    # Reset window size
+    "super+Control+r".action = set-column-width "50%";
 
     "super+1".action = focus-workspace "browser";
     "super+2".action = focus-workspace "vesktop";

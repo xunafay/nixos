@@ -3,6 +3,7 @@ import Quickshell.Io
 IpcHandler {
     property var appLauncherPanel
     property var lockScreen
+    property var sidebarPopup
 
     target: "globalIPC"
 
@@ -18,6 +19,26 @@ IpcHandler {
             console.log("[IPC] Applauncher show() called");
             appLauncherPanel.showAt();
         }
+    }
+
+    // Toggle Quick Access / Sidebar Panel
+    function toggleQuickAccess(): void {
+        if (!sidebarPopup) {
+            console.warn("QuickAccessIpcHandler: sidebarPopup not set!");
+            return;
+        }
+        if (sidebarPopup.visible) {
+            console.log("[IPC] QuickAccess hide() called");
+            sidebarPopup.hidePopup();
+        } else {
+            console.log("[IPC] QuickAccess show() called");
+            sidebarPopup.showAt();
+        }
+    }
+
+    // Alias for toggleQuickAccess
+    function toggleStatusMenu(): void {
+        toggleQuickAccess();
     }
 
     // Toggle LockScreen

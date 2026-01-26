@@ -11,6 +11,8 @@ import qs.Helpers
 
 Item {
     property alias panel: wifiPanelModal
+    width: 22
+    height: 22
     
     function showAt() {
         wifiPanelModal.visible = true;
@@ -324,20 +326,18 @@ Item {
     // Wifi button (no background card)
     Rectangle {
         id: wifiButton
-        width: 36; height: 36
-        radius: 18
+        width: 22; height: 22
+        radius: 11
         border.color: Theme.accentPrimary
-        border.width: 1
-        color: wifiButtonArea.containsMouse ? Theme.accentPrimary : "transparent"
+        border.width: 0
+        color: "transparent"
 
         Text {
             anchors.centerIn: parent
             text: "wifi"
-            font.family: "Material Symbols Outlined"
-            font.pixelSize: 22
-            color: wifiButtonArea.containsMouse
-                ? Theme.backgroundPrimary
-                : Theme.accentPrimary
+            font.family: wifiButtonArea.containsMouse ? "Material Symbols Rounded" : "Material Symbols Outlined"
+            font.pixelSize: 16
+            color: wifiButtonArea.containsMouse ? Theme.accentPrimary : Theme.textDisabled
             verticalAlignment: Text.AlignVCenter
             horizontalAlignment: Text.AlignHCenter
         }
