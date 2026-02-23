@@ -39,7 +39,6 @@ in {
     packages = with pkgs; [
       vivaldi
       steam
-      neovim
       bash
       git
       fastfetch
@@ -48,6 +47,23 @@ in {
       vscode
       grim
       swappy
+      obsidian
+
+      # dev
+      (
+        with dotnetCorePackages;
+        combinePackages [
+          sdk_8_0
+          sdk_9_0
+          sdk_10_0
+        ]
+      )
+
+      # nvim
+      neovim
+      gcc
+      ripgrep
+      unzip
 
       # quickshell deps
       quickshell
