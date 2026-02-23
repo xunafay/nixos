@@ -2,27 +2,21 @@
 
 let
   brightnessScript = pkgs.writeShellScriptBin "brightness" ''
-    BUS=10
     STEP=5
-    MIN=0
-    MAX=100
     OSD_FILE="/tmp/brightness_osd_level"
 
-    current=$(ddcutil --bus=$BUS getvcp 10 | grep -oP "current value\\s*=\\s*\\K[0-9]+")
-    new=$current
-
     if [[ "$1" == "up" ]]; then
-      new=$((current + STEP))
-      (( new > MAX )) && new=$MAX
+      ${pkgs.brightnessctl}/bin/brightnessctl set "+''${STEP}%"
     elif [[ "$1" == "down" ]]; then
-      new=$((current - STEP))
-      (( new < MIN )) && new=$MIN
+      ${pkgs.brightnessctl}/bin/brightnessctl set "''${STEP}%-"
     else
       exit 1
     fi
 
-    ddcutil --bus=$BUS setvcp 10 "$new"
-    echo "$new" > "$OSD_FILE"
+    current=$(${pkgs.brightnessctl}/bin/brightnessctl get)
+    max=$(${pkgs.brightnessctl}/bin/brightnessctl max)
+    percentage=$(( current * 100 / max ))
+    echo "$percentage" > "$OSD_FILE"
   '';
 in
 {

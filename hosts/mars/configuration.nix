@@ -101,7 +101,7 @@
   users.users.hannah = {
     isNormalUser = true;
     description = "Hannah Witvrouwen";
-    extraGroups = [ "networkmanager" "wheel" ];
+    extraGroups = [ "networkmanager" "wheel" "video" ];
     packages = with pkgs; [
       kdePackages.kate
     #  thunderbird
@@ -122,6 +122,7 @@
     home-manager
     git
     gnumake
+    brightnessctl
   ];
 
   programs.steam = {
