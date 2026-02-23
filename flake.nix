@@ -27,15 +27,29 @@
       system = "x86_64-linux";
       pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
     in {
-      homeConfigurations = {
-        hannah = home-manager.lib.homeManagerConfiguration {
-          inherit pkgs;
-
-	  extraSpecialArgs = {
-	    inherit inputs;
-	  };
-
-          modules = [ ./home.nix ];
+      nixosConfigurations = {
+        nixos = nixpkgs.lib.nixosSystem {
+          inherit system;
+          specialArgs = {
+            inherit inputs;
+          };
+          inherit lib;
+          modules = [
+            ./hosts/mars/configuration.nix
+            home-manager.nixosModules.home-manager {
+              home-manager.useGlobalPkgs = true; 
+              home-manager.useUserPackages = true;
+              home-manager.extraSpecialArgs = {
+                inherit inputs;
+              };
+              home-manager.users.hannah = {
+                
+                imports = [
+                  ./home.nix
+                ];
+              };
+            }
+          ];
         };
       };
     };

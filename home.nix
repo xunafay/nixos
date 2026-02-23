@@ -12,6 +12,10 @@ in {
     '';
   };
 
+  programs.niri = {
+    enable = true;
+  };
+
   programs.git = {
     enable = true;
     settings = {
