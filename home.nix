@@ -40,6 +40,10 @@ in {
   };
 
   home = {
+    sessionPath = [
+      "$HOME/.local/bin"
+    ];
+
     packages = with pkgs; [
       vivaldi
       steam
@@ -62,12 +66,15 @@ in {
           sdk_10_0
         ]
       )
+      cargo
+      rustc
 
       # nvim
       neovim
       gcc
       ripgrep
       unzip
+      fd
 
       # quickshell deps
       quickshell

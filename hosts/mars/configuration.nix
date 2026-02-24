@@ -109,6 +109,13 @@
     git
     gnumake
     brightnessctl
+    nix-ld
+  ];
+
+  programs.nix-ld.enable = true;
+  programs.nix-ld.libraries = with pkgs; [
+     # Add any missing dynamic libraries for unpackaged programs
+     # here, NOT in environment.systemPackages
   ];
 
   programs.steam = {
@@ -119,6 +126,25 @@
 
   programs.neovim = {
     enable = true;
+  };
+
+  fonts = {
+    packages = with pkgs; [
+      fira-code
+      jetbrains-mono
+      twitter-color-emoji
+      material-symbols
+    ]
+    ++ builtins.filter lib.attrsets.isDerivation (builtins.attrValues pkgs.nerd-fonts);
+
+    fontconfig = {
+      defaultFonts = {
+        monospace = [ "JetBrainsMono Nerd Font" ];
+        sansSerif = [ "Roboto Nerd Font" ];
+        serif = [ "Roboto Nerd Font" ];
+        emoji = [ "Twitter Color Emoji" ];
+      };
+    };
   };
 
   # This value determines the NixOS release from which the default

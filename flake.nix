@@ -28,7 +28,7 @@
       pkgs = import nixpkgs { inherit system; config.allowUnfree = true; };
     in {
       nixosConfigurations = {
-        nixos = nixpkgs.lib.nixosSystem {
+        mars = nixpkgs.lib.nixosSystem {
           inherit system;
           specialArgs = {
             inherit inputs;
@@ -43,7 +43,6 @@
                 inherit inputs;
               };
               home-manager.users.hannah = {
-                
                 imports = [
                   ./home.nix
                 ];
