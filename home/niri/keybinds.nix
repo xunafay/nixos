@@ -11,6 +11,8 @@ in {
 
     volume-up = spawn pactl [ "set-sink-volume" "@DEFAULT_SINK@" "+5%" ];
     volume-down = spawn pactl [ "set-sink-volume" "@DEFAULT_SINK@" "-5%" ];
+    brightness-up = spawn "sh" [ "brightness" "up" ];
+    brightness-down = spawn "sh" [ "brightness" "down" ];
     screenshot = spawn "sh" [ "-c" "${grim} - | ${swappy} -f -" ];
   in {
 
@@ -22,7 +24,8 @@ in {
 
     "xf86audioraisevolume".action = volume-up;
     "xf86audiolowervolume".action = volume-down;
-
+    "xf86monbrightnessup".action = brightness-up;
+    "xf86monbrightnessdown".action = brightness-down;
     "control+super+xf86audioraisevolume".action = spawn "brightness" "up";
     "control+super+xf86audiolowervolume".action = spawn "brightness" "down";
 

@@ -2,14 +2,24 @@
 
 let
   brightnessScript = pkgs.writeShellScriptBin "brightness" ''
-    BUS=10
     STEP=5
     MIN=0
     MAX=100
     OSD_FILE="/tmp/brightness_osd_level"
+    DEVICE=amdgpu_bl2
 
-    current=$(ddcutil --bus=$BUS getvcp 10 | grep -oP "current value\\s*=\\s*\\K[0-9]+")
-    new=$current
+    current=$(brightnessctl --device $DEVICE get)
+    device_max=$(brightnessctl --device $DEVICE max)
+
+    new=$(echo "scale=2; ($current / $device_max) * 100" | bc \
+          | sed 's/\.[0-9]*$//' \
+          | awk '{ print int(($1 + 2) / 5) * 5 }')
+
+    current=$(echo "scale=2; ($current / $device_max) * 100" | bc \
+             | sed 's/\.[0-9]*$//' \
+             | awk '{ print int(($1 + 2) / 5) * 5 }')
+
+    echo $current $device_max $new
 
     if [[ "$1" == "up" ]]; then
       new=$((current + STEP))
@@ -21,7 +31,7 @@ let
       exit 1
     fi
 
-    ddcutil --bus=$BUS setvcp 10 "$new"
+    brightnessctl --device $DEVICE set "$new%"
     echo "$new" > "$OSD_FILE"
   '';
 in

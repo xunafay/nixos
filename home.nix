@@ -84,6 +84,7 @@ in {
       kdePackages.qtdeclarative
       kdePackages.qtstyleplugin-kvantum
       wallust
+      bc
      
       # Niri
       xwayland-satellite
