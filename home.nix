@@ -19,10 +19,10 @@ in {
   programs.git = {
     enable = true;
     settings = {
-    	user = {
-	  name = "Hannah Witvrouwen";
-	  email = "hannah.witvrouwen@gmail.com";
-	};
+      user = {
+        name = "Hannah Witvrouwen";
+        email = "hannah.witvrouwen@gmail.com";
+      };
     };
   };
 
@@ -71,6 +71,7 @@ in {
 
       # nvim
       neovim
+      nodejs_24
       gcc
       tree-sitter
       ripgrep
@@ -86,7 +87,7 @@ in {
       kdePackages.qtstyleplugin-kvantum
       wallust
       bc
-     
+
       # Niri
       xwayland-satellite
       wl-clipboard
