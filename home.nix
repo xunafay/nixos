@@ -72,6 +72,7 @@ in {
       # nvim
       neovim
       gcc
+      tree-sitter
       ripgrep
       unzip
       fd
