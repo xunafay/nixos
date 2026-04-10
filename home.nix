@@ -1,4 +1,4 @@
-{ lib, pkgs, config, ... }: let
+{ inputs, lib, pkgs, config, ... }: let
   username = "hannah";
 in {
   imports = [
@@ -39,6 +39,11 @@ in {
     swappy.enable = true;
   };
 
+  programs.neovim = {
+    enable = true;
+    package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
+  };
+
   home = {
     sessionPath = [
       "$HOME/.local/bin"
@@ -70,13 +75,14 @@ in {
       rustc
 
       # nvim
-      neovim
+      #neovim
       nodejs_24
       gcc
       tree-sitter
       ripgrep
       unzip
       fd
+      gh
 
       # quickshell deps
       quickshell

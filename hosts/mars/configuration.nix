@@ -125,10 +125,6 @@
     localNetworkGameTransfers.openFirewall = true;
   };
 
-  programs.neovim = {
-    enable = true;
-  };
-
   fonts = {
     packages = with pkgs; [
       fira-code
