@@ -30,6 +30,11 @@
   networking.hostName = "mars"; # Define your hostname.
   #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
 
+  networking.firewall = {
+    allowedTCPPorts = [ 57621 ]; # spotify device discovery
+    allowedUDPPorts = [ 5353 ]; # chromecast
+  };
+
   # Enable networking
   networking.networkmanager = {
     enable = true;

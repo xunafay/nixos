@@ -61,6 +61,8 @@ in {
       grim
       swappy
       obsidian
+      spotify
+      playerctl
 
       # dev
       (
