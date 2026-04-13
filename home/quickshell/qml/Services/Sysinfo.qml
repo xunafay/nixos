@@ -13,6 +13,7 @@ Singleton {
     property string cpuTempStr: ""
     property string memoryUsageStr: ""
     property string memoryUsagePerStr: ""
+    property string batteryStatusStr: ""
     property real cpuUsage: 0
     property real memoryUsage: 0
     property real cpuTemp: 0
@@ -40,6 +41,24 @@ Singleton {
                     diskUsageStr = data.diskper + "%";
                 } catch (e) {
                     console.error("Failed to parse zigstat output:", e);
+                }
+            }
+        }
+    }
+
+    Process {
+        id: batteryProcess
+        running: true
+        command: ["upower", "-i", "/org/freedesktop/UPower/devices/battery_BAT0"]
+        stdout: SplitParser {
+            onRead: function (line) {
+                try {
+                    const usageMatch = line.match(/percentage:\s+(\d+)%/);
+                    if (usageMatch) {
+                        batteryStatusStr = usageMatch[1] + "%";
+                    }
+                } catch (e) {
+                    console.error("Failed to parse battery output:", e);
                 }
             }
         }

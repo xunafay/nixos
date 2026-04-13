@@ -78,4 +78,27 @@ Row {
             verticalAlignment: Text.AlignVCenter
         }
     }
+
+    // Battery Status Component
+    Row {
+        id: batteryStatusLayout
+        spacing: 3
+        Text {
+            font.family: "Material Symbols Outlined"
+            font.pixelSize: Theme.fontSizeBody
+            text: "battery_full"
+            color: Theme.accentPrimary
+            verticalAlignment: Text.AlignVCenter
+            anchors.verticalCenter: parent.verticalCenter
+        }
+
+        Text {
+            font.family: Theme.fontFamily
+            font.pixelSize: Theme.fontSizeSmall
+            color: Theme.textPrimary
+            text: Sysinfo.batteryStatusStr
+            anchors.verticalCenter: parent.verticalCenter
+            verticalAlignment: Text.AlignVCenter
+        }
+    }
 }
