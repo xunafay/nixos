@@ -1,4 +1,3 @@
-# flake.nix
 {
   description = "Hannah's nix configuration";
 
@@ -46,7 +45,7 @@
               };
               home-manager.users.hannah = {
                 imports = [
-                  ./home.nix
+                  ./users/hannah/home.nix
                 ];
               };
             }
