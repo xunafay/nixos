@@ -47,6 +47,16 @@ Singleton {
         }
     }
 
+    Timer {
+        interval: 2000
+        running: true
+        repeat: true
+        onTriggered: {
+            batteryProcess.running = false
+            batteryProcess.running = true
+        }
+    }
+ 
     Process {
         id: batteryProcess
         running: true
@@ -63,6 +73,27 @@ Singleton {
                         const state = stateMatch[1];
                         if (state === "fully-charged") {
                             batteryStatusIcon = "battery_charging_full";
+                        } else if (state === "charging") {
+                            if (usageMatch) {
+                                const usage = parseInt(usageMatch[1]);
+                                if (usage >= 80) {
+                                    batteryStatusIcon = "battery_charging_full";
+                                } else if (usage >= 60) {
+                                    batteryStatusIcon = "battery_charging_5_bar";
+                                } else if (usage >= 40) {
+                                    batteryStatusIcon = "battery_charging_4_bar";
+                                } else if (usage >= 20) {
+                                    batteryStatusIcon = "battery_charging_3_bar";
+                                } else if (usage >= 10) {
+                                    batteryStatusIcon = "battery_charging_2_bar";
+                                } else if (usage >= 5) {
+                                    batteryStatusIcon = "battery_charging_1_bar";
+                                } else {
+                                    batteryStatusIcon = "battery_charging_alert";
+                                }
+                            } else {
+                                batteryStatusIcon = "battery_charging_alert";
+                            }
                         } else if (state === "discharging") {
                             if (usageMatch) {
                                 const usage = parseInt(usageMatch[1]);
