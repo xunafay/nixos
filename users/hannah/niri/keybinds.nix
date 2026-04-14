@@ -45,10 +45,13 @@ in {
     "super+Down".action = focus-workspace-down;
     "super+Up".action = focus-workspace-up;
 
-    "super+Shift+Left".action = move-column-left;
-    "super+Shift+Right".action = move-column-right;
+    "super+Shift+Left".action = move-column-left-or-to-monitor-left;
+    "super+Shift+Right".action = move-column-right-or-to-monitor-right;
     "super+Shift+Down".action = move-column-to-workspace-down;
     "super+Shift+Up".action = move-column-to-workspace-up;
+
+    "super+Control+Shift+Left".action = move-column-to-monitor-left;
+    "super+Control+Shift+Right".action = move-column-to-monitor-right;
 
     # Window resizing
     "super+Control+Left".action = set-column-width "-10%";
