@@ -46,6 +46,12 @@ in {
     package = inputs.neovim-nightly-overlay.packages.${pkgs.system}.default;
   };
 
+  dconf.settings = {
+    "org/gnome/desktop/interface" = {
+      color-scheme = "prefer-dark";
+    };
+  };
+
   home = {
     sessionPath = [
       "$HOME/.local/bin"

@@ -7,5 +7,7 @@
     swaylock
     wl-clipboard
     xwayland-satellite
+    dconf
+    gsettings-desktop-schemas
   ];
 }

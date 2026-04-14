@@ -13,7 +13,13 @@
     dates = "daily";
     options = "--delete-older-than 14d";
   };
-  xdg.portal.enable = true;
+  xdg.portal = {
+    enable = true;
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk
+    ];
+  };
+  programs.dconf.enable = true;
  
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
