@@ -20,7 +20,24 @@ in {
 
   programs.git = {
     enable = true;
+    aliases = {
+      graph = "log --graph --oneline --all";
+      default-branch = "!git symbolic-ref refs/remotes/origin/HEAD | sed 's@^refs/remotes/origin/@@'";
+      merge-base-origin = "!f() { git merge-base \${1-HEAD} origin/$(git default-branch); };f ";
+      push-stepped = builtins.readFile ./git/push-stepped.sh;
+      stack = builtins.readFile ./git/stack.sh;
+      push-stack = builtins.readFile ./git/push-stack.sh;
+      push-stepped-stack = builtins.readFile ./git/push-stepped-stack.sh;
+      red = "rebase --interactive --autosquash --update-refs";
+    };
     settings = {
+      init.defaultBranch = "main";
+      push = {
+        autosSetupRemote = true;
+      };
+      rerere = {
+        enabled = true;
+      };
       user = {
         name = "Hannah Witvrouwen";
         email = "hannah.witvrouwen@gmail.com";
