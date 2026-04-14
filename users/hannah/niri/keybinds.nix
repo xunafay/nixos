@@ -7,20 +7,18 @@ in {
   programs.niri.settings.binds = with config.lib.niri.actions; let
     pactl = "${pkgs.pulseaudio}/bin/pactl";
     grim = "${pkgs.grim}/bin/grim";
-    swappy = "${pkgs.swappy}/bin/swappy";
+    satty = "${pkgs.satty}/bin/satty";
+    slurp = "${pkgs.slurp}/bin/slurp";
 
     volume-up = spawn pactl [ "set-sink-volume" "@DEFAULT_SINK@" "+5%" ];
     volume-down = spawn pactl [ "set-sink-volume" "@DEFAULT_SINK@" "-5%" ];
     brightness-up = spawn "sh" [ "brightness" "up" ];
     brightness-down = spawn "sh" [ "brightness" "down" ];
-    screenshot = spawn "sh" [ "-c" "${grim} - | ${swappy} -f -" ];
+    screenshot = spawn "sh" [ "-c" "${grim} -g \"$(${slurp})\" - | ${satty} -f -" ];
   in {
-
-    # Quickshell Keybinds Start
     "super+Return".action = spawn ["qs" "ipc" "call" "globalIPC" "toggleLauncher"];
     "super+Space".action = spawn ["qs" "ipc" "call" "globalIPC" "toggleStatusMenu"];
     "super+l".action = spawn ["qs" "ipc" "call" "globalIPC" "toggleLock"];
-    # Quickshell Keybinds End
 
     "xf86audioraisevolume".action = volume-up;
     "xf86audiolowervolume".action = volume-down;

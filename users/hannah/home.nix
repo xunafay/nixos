@@ -1,4 +1,4 @@
-{ inputs, lib, pkgs, config, ... }: let
+{ inputs, pkgs, ... }: let
   username = "hannah";
 in {
   imports = [
@@ -62,6 +62,7 @@ in {
       obsidian
       spotify
       playerctl
+      teams-for-linux
     ];
 
     inherit username;

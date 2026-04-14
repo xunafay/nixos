@@ -2,7 +2,8 @@
 {
   home.packages = with pkgs; [
     grim
-    swappy
+    slurp
+    satty
     swaylock
     wl-clipboard
     xwayland-satellite

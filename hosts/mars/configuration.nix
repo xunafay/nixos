@@ -1,9 +1,4 @@
-# Edit this configuration file to define what should be installed on
-# your system.  Help is available in the configuration.nix(5) man page
-# and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, ... }:
-
+{ pkgs, ... }:
 {
   imports =
     [
@@ -19,16 +14,13 @@
     options = "--delete-older-than 14d";
   };
   xdg.portal.enable = true;
-  
-  # Bootloader.
+ 
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
 
-  # Use latest kernel.
   boot.kernelPackages = pkgs.linuxPackages_latest;
 
-  networking.hostName = "mars"; # Define your hostname.
-  #networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
+  networking.hostName = "mars";
 
   networking.firewall = {
     allowedTCPPorts = [ 57621 ]; # spotify device discovery
