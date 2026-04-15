@@ -38,6 +38,9 @@
       pull = {
         rebase = true;
       };
+      rebase = {
+        autoStash = true;
+      };
       merge = {
         conflictStyle = "zdiff3";
         autoStash = true;
