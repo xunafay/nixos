@@ -1,5 +1,4 @@
-{ config, pkgs, ... }:
-
+{ pkgs, ... }:
 {
   programs.niri = {
     enable = true;
@@ -43,9 +42,10 @@
 
       input = {
         keyboard.xkb = {
-	  layout = "us";
-	  variant = "intl";
-	};
+    	  layout = "us";
+	      variant = "intl";
+	    };
+
         touchpad = {
           click-method = "button-areas";
           dwt = true;
@@ -62,14 +62,8 @@
       };
 
       outputs = {
-        "eDP-2" = {
-          mode = {
-            width = 1920;
-            height = 1080;
-            refresh = 60.0;
-          };
-          scale = 1.0;
-          position = { x = 0; y = 0; };
+        "HDMI-A-1" = {
+          position = { x = -1920; y = 0; };
         };
       };
 
