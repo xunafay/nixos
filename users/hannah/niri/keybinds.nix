@@ -1,4 +1,4 @@
-{ lib, config, pkgs, ... }:
+{ config, pkgs, ... }:
 
 let
   apps = import ./applications.nix { inherit pkgs; };
@@ -9,6 +9,7 @@ in {
     grim = "${pkgs.grim}/bin/grim";
     satty = "${pkgs.satty}/bin/satty";
     slurp = "${pkgs.slurp}/bin/slurp";
+    mirror = "${pkgs.wl-mirror}/bin/wl-mirror";
 
     volume-up = spawn pactl [ "set-sink-volume" "@DEFAULT_SINK@" "+5%" ];
     volume-down = spawn pactl [ "set-sink-volume" "@DEFAULT_SINK@" "-5%" ];
@@ -39,6 +40,7 @@ in {
     "super+shift+s".action = screenshot;
     #"control+shift+2".action = screenshot-window { write-to-disk = true; };
 
+    "super+p".action = spawn mirror ["eDP-1"];
 
     "super+Left".action = focus-column-left;
     "super+Right".action = focus-column-right;

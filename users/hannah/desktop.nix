@@ -27,5 +27,6 @@
     xwayland-satellite
     dconf
     gsettings-desktop-schemas
+    wl-mirror
   ];
 }
