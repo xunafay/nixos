@@ -55,9 +55,16 @@
     };
   };
 
+  programs.gh = {
+    extensions = with pkgs; [
+      gh-webhook
+    ];
+  };
+
   home.packages = with pkgs; [
     bash
     git
+    gh
     vscode
     (
       with dotnetCorePackages;
